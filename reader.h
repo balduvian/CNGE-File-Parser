@@ -106,6 +106,7 @@ namespace FileInput {
 					if (scope == 0)
 						++elementCount;
 				} break;
+
 				case 3: {
 					if (scope == 0)
 						keepGoing = false;

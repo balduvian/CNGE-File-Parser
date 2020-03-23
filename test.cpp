@@ -55,4 +55,7 @@ int main() {
 		std::cout << ex.what() << std::endl;
 	}
 
+	for (auto i = 0; i < 256; ++i) {
+		std::cout << (char)(i | 0x20);
+	}
 }
