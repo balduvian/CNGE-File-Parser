@@ -1,24 +1,22 @@
 
 #include "nameFactory.h"
-
 #include "../util.h"
 
 namespace FileInput {
 	
-	auto NameFactory::customReset() -> void {
-		seekFirst = true;
+	auto NameFactory::customReset() -> void {}
+
+	auto NameFactory::customCheck(int position, char current) -> CheckReturn {
+		/* all length words satisfy the name */
+		if (position == 0)
+			/* the first character may not be a number */
+			return { wordChar(current), true };
+
+		else
+			return { wordChar(current) || decimalChar(current), true };
 	}
 
 	NameFactory::NameFactory()
-		: TokenFactory(Token::Type::NAME), seekFirst(true) {}
-
-	auto NameFactory::customCheck(char current) -> bool {
-		if (seekFirst) {
-			return wordChar(current);
-
-		} else {
-			return wordChar(current) || decimalChar(current);
-		}
-	}
+		: TokenFactory(Token::Type::NAME) {}
 
 }

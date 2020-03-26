@@ -30,12 +30,12 @@ namespace FileInput {
 		Token(const Token&) = delete;
 		Token& operator=(const Token&) = delete;
 
-		~Token();
-
 	public:
 		Token();
 
 		Token(Token&&) noexcept;
+
+		~Token();
 
 		static auto fromStream(Type, std::istream&, int) -> Token;
 
@@ -44,6 +44,8 @@ namespace FileInput {
 		auto getLength() -> int;
 
 		auto getValue() -> char*;
+
+		auto getType() -> Type;
 
 	};
 

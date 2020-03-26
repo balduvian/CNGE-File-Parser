@@ -8,11 +8,9 @@ namespace FileInput {
 	
 	class NameFactory : public TokenFactory {
 	private:
-		bool seekFirst;
-
 		auto customReset() -> void override;
 
-		auto customCheck(char) -> bool override;
+		auto customCheck(int, char) -> CheckReturn override;
 
 	public:
 		NameFactory();

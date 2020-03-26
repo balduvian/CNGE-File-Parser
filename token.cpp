@@ -7,7 +7,7 @@ namespace FileInput {
 
 	Token::Token(Type type, int length, char* value) : type(type), length(length), value(value) {}
 
-	Token::Token(Token&& other) : type(other.type), length(other.length), value(other.value) {
+	Token::Token(Token&& other) noexcept : type(other.type), length(other.length), value(other.value) {
 		other.value = nullptr;
 	}
 
@@ -36,6 +36,10 @@ namespace FileInput {
 
 	auto Token::getValue() -> char* {
 		return value;
+	}
+
+	auto Token::getType() -> Type {
+		return type;
 	}
 
 }

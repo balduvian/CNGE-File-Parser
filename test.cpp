@@ -8,6 +8,7 @@ int numBlocks;
 block* blocks;
 
 #include "reader.h"
+#include "lexer.h"
 
 #include <charconv>
 #include <iostream>
@@ -33,29 +34,13 @@ auto FileInput::Reader::read<kek>() -> kek {
 }
 
 int main() {
-	auto reader = FileInput::Reader("test.txt");
+	auto lexer = FileInput::Lexer();
 
-	try {
-		auto array = reader.read<kek*>();
-		
-		for (auto i : array) {
-			std::cout << i << std::endl;
-		}
+	auto stream = std::ifstream("test2.txt");
 
-		auto str = reader.read<char*>();
+	auto tokenList = lexer.lex(stream);
 
-		std::cout << str << std::endl;
-
-		auto ch0 = reader.read<char>();
-		auto ch1 = reader.read<char>();
-
-		std::cout << ch0 << " " << ch1 << std::endl;
-
-	} catch (std::exception& ex) {
-		std::cout << ex.what() << std::endl;
-	}
-
-	for (auto i = 0; i < 256; ++i) {
-		std::cout << (char)(i | 0x20);
+	for (auto &i : tokenList) {
+		std::cout << (int)i.getType() << ", ";
 	}
 }
