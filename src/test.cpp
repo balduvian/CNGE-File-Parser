@@ -36,7 +36,7 @@ auto FileInput::Reader::read<kek>() -> kek {
 int main() {
 	auto lexer = FileInput::Lexer();
 
-	auto stream = std::ifstream("test2.txt");
+	auto stream = std::ifstream("test/test2.txt");
 
 	auto tokenList = lexer.lex(stream);
 
